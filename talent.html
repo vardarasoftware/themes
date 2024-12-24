@@ -111,48 +111,202 @@
                 <input type="text" placeholder="Search for jobs" class="w-full border-gray-300 border rounded p-2 focus:outline focus:outline-gray-400">
             </div>
 
-            <!-- Featured Jobs -->
+            <!-- User Panels -->
             <div class="space-y-4 mt-4">
-                <!-- Sample Featured Jobs -->
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">Frontend Developer</h2>
-                    <p class="text-gray-600">Looking for a skilled developer to create responsive websites.</p>
+                <!-- User Panel 1 -->
+                <div class="border p-4 rounded shadow-md flex flex-col">
+                    <div class="flex items-center">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/100" alt="User Image" class="w-24 h-24 rounded-full">
+                            <span class="absolute bottom-0 right-0 bg-yellow-400 rounded-full p-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" />
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-lg font-bold">John Doe</h2>
+                            <p class="text-md text-gray-700">Software Engineer</p>
+                            <p class="text-sm text-gray-500">50/hr | 92% Job Success | 100K+ Earned</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">JavaScript</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">Python</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold">Graphic Design</span>
+                    </div>
+                    <p class="mt-2 text-gray-600">Passionate software engineer with a knack for creating efficient solutions. Always eager to learn and grow.</p>
+                    <div class="mt-4 text-gray-500 text-sm">
+                        John Doe has worked 18 jobs related to your search.
+                    </div>
                 </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">Backend Developer</h2>
-                    <p class="text-gray-600">Need a backend expert for API development using Node.js.</p>
+
+                <!-- User Panel 2 -->
+                <div class="border p-4 rounded shadow-md flex flex-col">
+                    <div class="flex items-center">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/100" alt="User Image" class="w-24 h-24 rounded-full">
+                            <span class="absolute bottom-0 right-0 bg-yellow-400 rounded-full p-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" />
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-lg font-bold">Jane Smith</h2>
+                            <p class="text-md text-gray-700">Frontend Developer</p>
+                            <p class="text-sm text-gray-500">60/hr | 95% Job Success | 120K+ Earned</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">React</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">CSS</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold">HTML</span>
+                    </div>
+                    <p class="mt-2 text-gray-600">Creative frontend developer with a passion for user experience.</p>
+                    <div class="mt-4 text-gray-500 text-sm">
+                        Jane Smith has worked 22 jobs related to your search.
+                    </div>
                 </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">UI/UX Designer</h2>
-                    <p class="text-gray-600">Seeking a designer for mobile app mockups.</p>
+
+                <!-- User Panel 3 -->
+                <div class="border p-4 rounded shadow-md flex flex-col">
+                    <div class="flex items-center">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/100" alt="User Image" class="w-24 h-24 rounded-full">
+                            <span class="absolute bottom-0 right-0 bg-yellow-400 rounded-full p-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" />
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-lg font-bold">Michael Brown</h2>
+                            <p class="text-md text-gray-700">Backend Developer</p>
+                            <p class="text-sm text-gray-500">55/hr | 90% Job Success | 80K+ Earned</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">Node.js</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">Express</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold">MongoDB</span>
+                    </div>
+                    <p class="mt-2 text-gray-600">Experienced backend developer specializing in API development.</p>
+                    <div class="mt-4 text-gray-500 text-sm">
+                        Michael Brown has worked 15 jobs related to your search.
+                    </div>
                 </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">SEO Specialist</h2>
-                    <p class="text-gray-600">Optimize website rankings and drive organic traffic.</p>
+
+                <!-- User Panel 4 -->
+                <div class="border p-4 rounded shadow-md flex flex-col">
+                    <div class="flex items-center">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/100" alt="User Image" class="w-24 h-24 rounded-full">
+                            <span class="absolute bottom-0 right-0 bg-yellow-400 rounded-full p-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" />
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-lg font-bold">Emily Davis</h2>
+                            <p class="text-md text-gray-700">UI/UX Designer</p>
+                            <p class="text-sm text-gray-500">70/hr | 93% Job Success | 150K+ Earned</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">Figma</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">Sketch</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold">Adobe XD</span>
+                    </div>
+                    <p class="mt-2 text-gray-600">Creative designer focused on enhancing user experience.</p>
+                    <div class="mt-4 text-gray-500 text-sm">
+                        Emily Davis has worked 20 jobs related to your search.
+                    </div>
                 </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">Data Analyst</h2>
-                    <p class="text-gray-600">Analyze data trends for business strategy.</p>
+
+                <!-- User Panel 5 -->
+                <div class="border p-4 rounded shadow-md flex flex-col">
+                    <div class="flex items-center">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/100" alt="User Image" class="w-24 h-24 rounded-full">
+                            <span class="absolute bottom-0 right-0 bg-yellow-400 rounded-full p-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" />
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-lg font-bold">David Wilson</h2>
+                            <p class="text-md text-gray-700">SEO Specialist</p>
+                            <p class="text-sm text-gray-500">45/hr | 88% Job Success | 60K+ Earned</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">SEO</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">Google Analytics</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold">Content Marketing</span>
+                    </div>
+                    <p class="mt-2 text-gray-600">Expert in optimizing websites for search engines.</p>
+                    <div class="mt-4 text-gray-500 text-sm">
+                        David Wilson has worked 10 jobs related to your search.
+                    </div>
                 </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">Content Writer</h2>
-                    <p class="text-gray-600">Write engaging articles for blogs and websites.</p>
+
+                <!-- User Panel 6 -->
+                <div class="border p-4 rounded shadow-md flex flex-col">
+                    <div class="flex items-center">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/100" alt="User Image" class="w-24 h-24 rounded-full">
+                            <span class="absolute bottom-0 right-0 bg-yellow-400 rounded-full p-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" />
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-lg font-bold">Sophia Johnson</h2>
+                            <p class="text-md text-gray-700">Data Analyst</p>
+                            <p class="text-sm text-gray-500">65/hr | 91% Job Success | 110K+ Earned</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">Data Analysis</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">SQL</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold">Python</span>
+                    </div>
+                    <p class="mt-2 text-gray-600">Skilled analyst with a focus on data-driven decision making.</p>
+                    <div class="mt-4 text-gray-500 text-sm">
+                        Sophia Johnson has worked 12 jobs related to your search.
+                    </div>
                 </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">Social Media Manager</h2>
-                    <p class="text-gray-600">Manage social media accounts and grow audience engagement.</p>
-                </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">Mobile App Developer</h2>
-                    <p class="text-gray-600">Build a cross-platform mobile app using Flutter.</p>
-                </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">Graphic Designer</h2>
-                    <p class="text-gray-600">Design logos, banners, and marketing materials.</p>
-                </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">DevOps Engineer</h2>
-                    <p class="text-gray-600">Setup CI/CD pipelines and manage cloud infrastructure.</p>
+
+                <!-- User Panel 7 -->
+                <div class="border p-4 rounded shadow-md flex flex-col">
+                    <div class="flex items-center">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/100" alt="User Image" class="w-24 h-24 rounded-full">
+                            <span class="absolute bottom-0 right-0 bg-yellow-400 rounded-full p-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" />
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-lg font-bold">Liam Martinez</h2>
+                            <p class="text-md text-gray-700">Content Writer</p>
+                            <p class="text-sm text-gray-500">40/hr | 85% Job Success | 50K+ Earned</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">Blogging</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold mr-2">SEO</span>
+                        <span class="inline-block bg-gray-200 text-gray-700 rounded-full px-2 py-1 text-xs font-semibold">Copywriting</span>
+                    </div>
+                    <p class="mt-2 text-gray-600">Creative writer with a passion for storytelling.</p>
+                    <div class="mt-4 text-gray-500 text-sm">
+                        Liam Martinez has worked 10 jobs related to your search.
+                    </div>
                 </div>
             </div>
         </main>
@@ -161,26 +315,74 @@
         <aside class="hidden md:block w-1/4 bg-white p-4 rounded-md">
             <div class="space-y-4">
                 <!-- User Card -->
-                <div class="bg-white p-4 rounded shadow-md flex flex-col items-center text-center">
-                    <img src="https://via.placeholder.com/100" alt="User Image" class="w-20 h-20 rounded-full mb-4 shadow-md">
-                    <h3 class="text-lg font-bold text-gray-800">John Doe</h3>
-                    <p class="text-sm text-gray-600 mb-4">Software Engineer</p>
-                    <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
-                        <div class="bg-blue-500 h-2.5 rounded-full" style="width: 70%;"></div>
-                    </div>
-                    <span class="text-xs text-gray-500">Profile Completion: 70%</span>
-                </div>
+                  <!-- <div class="bg-white p-4 rounded shadow-md flex flex-col items-center text-center">
+                      <img src="https://via.placeholder.com/100" alt="User Image" class="w-20 h-20 rounded-full mb-4 shadow-md">
+                      <h3 class="text-lg font-bold text-gray-800">John Doe</h3>
+                      <p class="text-sm text-gray-600 mb-4">Software Engineer</p>
+                      <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                          <div class="bg-blue-500 h-2.5 rounded-full" style="width: 70%;"></div>
+                      </div>
+                      <span class="text-xs text-gray-500">Profile Completion: 70%</span>
+                  </div> -->
 
-                <!-- Accordion 1 -->
+                <!-- Accordion 1: Talent Badge -->
                 <div class="bg-white p-4 rounded shadow-md">
-                    <button id="button-1" class="w-full text-left flex justify-between items-center text-gray-800 font-bold" aria-expanded="false" aria-controls="content-1" onclick="toggleAccordion(1)">
-                        Block 3
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform transform" id="icon-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <button id="button-2" class="w-full text-left flex justify-between items-center text-gray-800 font-bold" aria-expanded="false" aria-controls="content-2" onclick="toggleAccordion(2)">
+                        Talent Badge
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform transform" id="icon-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <div id="content-1" class="mt-2 text-gray-600 hidden" role="region">
-                        Content for Block 3 goes here.
+                    <div id="content-2" class="mt-2 text-gray-600 hidden" role="region">
+                        <label><input type="checkbox"> Top Rated Plus</label><br>
+                        <label><input type="checkbox"> Rising Talent</label><br>
+                        <label><input type="checkbox"> Expert Vetted</label>
+                    </div>
+                </div>
+
+                <!-- Accordion 2: Skills -->
+                <div class="bg-white p-4 rounded shadow-md">
+                    <button id="button-3" class="w-full text-left flex justify-between items-center text-gray-800 font-bold" aria-expanded="false" aria-controls="content-3" onclick="toggleAccordion(3)">
+                        Skills
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform transform" id="icon-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="content-3" class="mt-2 text-gray-600 hidden" role="region">
+                        <label><input type="checkbox"> JavaScript</label><br>
+                        <label><input type="checkbox"> Python</label><br>
+                        <label><input type="checkbox"> Graphic Design</label>
+                    </div>
+                </div>
+
+                <!-- Accordion 3: Location -->
+                <div class="bg-white p-4 rounded shadow-md">
+                    <button id="button-4" class="w-full text-left flex justify-between items-center text-gray-800 font-bold" aria-expanded="false" aria-controls="content-4" onclick="toggleAccordion(4)">
+                        Location
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform transform" id="icon-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="content-4" class="mt-2 text-gray-600 hidden" role="region">
+                        <select class="border-gray-300 border rounded p-1">
+                            <option value="new-york">New York</option>
+                            <option value="los-angeles">Los Angeles</option>
+                            <option value="chicago">Chicago</option>
+                            <option value="miami">Miami</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Accordion 4: Additional Info -->
+                <div class="bg-white p-4 rounded shadow-md">
+                    <button id="button-5" class="w-full text-left flex justify-between items-center text-gray-800 font-bold" aria-expanded="false" aria-controls="content-5" onclick="toggleAccordion(5)">
+                        Additional Info
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform transform" id="icon-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="content-5" class="mt-2 text-gray-600 hidden" role="region">
+                        <p>Additional information can be added here.</p>
                     </div>
                 </div>
             </div>
