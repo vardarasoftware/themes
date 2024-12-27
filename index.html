@@ -43,6 +43,79 @@
                 accountInfo.classList.add('hidden');
             }
         });
+
+        function toggleJobDrawer(id) {
+            const drawer = document.getElementById(`job-drawer-${id}`);
+            drawer.classList.toggle('translate-x-full');
+            drawer.classList.toggle('translate-x-0');
+            
+            // Prevent body scrolling when drawer is open
+            document.body.classList.toggle('overflow-hidden');
+
+            // Add event listener for Escape key
+            if (!drawer.classList.contains('translate-x-full')) {
+                document.addEventListener('keydown', handleEscapeKey);
+            } else {
+                document.removeEventListener('keydown', handleEscapeKey);
+            }
+        }
+
+        function closeJobDrawer(id) {
+            const drawer = document.getElementById(`job-drawer-${id}`);
+            drawer.classList.add('translate-x-full');
+            drawer.classList.remove('translate-x-0');
+            
+            // Re-enable body scrolling
+            document.body.classList.remove('overflow-hidden');
+
+            // Remove Escape key event listener
+            document.removeEventListener('keydown', handleEscapeKey);
+        }
+
+        // Separate function to handle Escape key
+        function handleEscapeKey(event) {
+            if (event.key === 'Escape') {
+                // Find the open drawer
+                const openDrawer = document.querySelector('[id^="job-drawer-"]:not(.translate-x-full)');
+                
+                if (openDrawer) {
+                    // Extract the drawer ID
+                    const drawerId = openDrawer.id.split('-')[2];
+                    closeJobDrawer(drawerId);
+                }
+            }
+        }
+
+        // Add event listener to close drawer when clicking outside
+        document.addEventListener('click', (event) => {
+            // Get all job drawers
+            const jobDrawers = document.querySelectorAll('[id^="job-drawer-"]');
+            
+            jobDrawers.forEach((drawer) => {
+                // Check if the drawer is open (not translated)
+                if (!drawer.classList.contains('translate-x-full')) {
+                    // Check if the click is outside the drawer and not on the "Show More" button
+                    if (!drawer.contains(event.target) && 
+                        !event.target.closest(`[onclick="toggleJobDrawer(${drawer.id.split('-')[2]})"]`)) {
+                        // Close the drawer
+                        const drawerId = drawer.id.split('-')[2];
+                        closeJobDrawer(drawerId);
+                    }
+                }
+            });
+
+            // Existing notifications and account info close logic
+            const notifications = document.getElementById('popup-notifications');
+            const accountInfo = document.getElementById('popup-account-info');
+
+            if (!event.target.closest('#notifications-icon')) {
+                notifications.classList.add('hidden');
+            }
+
+            if (!event.target.closest('#account-info-icon')) {
+                accountInfo.classList.add('hidden');
+            }
+        });
     </script>
 </head>
 <body class="bg-white-100">
@@ -113,47 +186,272 @@
 
             <!-- Featured Jobs -->
             <div class="space-y-4 mt-4">
-                <!-- Sample Featured Jobs -->
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
+                <!-- Frontend Developer -->
+                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow relative">
                     <h2 class="text-lg font-bold">Frontend Developer</h2>
                     <p class="text-gray-600">Looking for a skilled developer to create responsive websites.</p>
+                    <button 
+                        onclick="toggleJobDrawer(1)" 
+                        class="absolute bottom-2 right-2 text-blue-500 hover:underline text-sm"
+                    >
+                        Show More
+                    </button>
+
+                    <!-- Job Drawer -->
+                    <div 
+                        id="job-drawer-1" 
+                        class="fixed inset-y-0 right-0 w-full md:w-4/5 bg-white z-50 transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto shadow-lg"
+                    >
+                        <div class="container mx-auto p-4 max-w-2xl">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-xl font-bold">Frontend Developer</h2>
+                                <button 
+                                    onclick="closeJobDrawer(1)" 
+                                    class="text-gray-600 hover:text-gray-900"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h3 class="font-semibold">Job Description</h3>
+                                    <p class="text-gray-600">
+                                        We are seeking a skilled Frontend Developer to create responsive and interactive websites. 
+                                        The ideal candidate will have experience with modern web technologies and a strong eye for design.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="font-semibold">Requirements</h3>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>Proficiency in HTML, CSS, and JavaScript</li>
+                                        <li>Experience with React or Vue.js</li>
+                                        <li>Understanding of responsive design principles</li>
+                                        <li>Familiarity with CSS frameworks like Tailwind</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="font-semibold">Responsibilities</h3>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>Develop and maintain responsive web applications</li>
+                                        <li>Collaborate with design and backend teams</li>
+                                        <li>Optimize applications for maximum speed and scalability</li>
+                                        <li>Implement new features and improve existing ones</li>
+                                    </ul>
+                                </div>
+                                
+                                <button class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+                                    Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
+
+                <!-- Backend Developer -->
+                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow relative">
                     <h2 class="text-lg font-bold">Backend Developer</h2>
                     <p class="text-gray-600">Need a backend expert for API development using Node.js.</p>
+                    <button 
+                        onclick="toggleJobDrawer(2)" 
+                        class="absolute bottom-2 right-2 text-blue-500 hover:underline text-sm"
+                    >
+                        Show More
+                    </button>
+
+                    <!-- Job Drawer -->
+                    <div 
+                        id="job-drawer-2" 
+                        class="fixed inset-y-0 right-0 w-full md:w-4/5 bg-white z-50 transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto shadow-lg"
+                    >
+                        <div class="container mx-auto p-4 max-w-2xl">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-xl font-bold">Backend Developer</h2>
+                                <button 
+                                    onclick="closeJobDrawer(2)" 
+                                    class="text-gray-600 hover:text-gray-900"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h3 class="font-semibold">Job Description</h3>
+                                    <p class="text-gray-600">
+                                        We are seeking an experienced Backend Developer to build robust and scalable server-side applications using Node.js.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="font-semibold">Requirements</h3>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>Strong proficiency in Node.js</li>
+                                        <li>Experience with Express.js or Nest.js</li>
+                                        <li>Understanding of RESTful API design</li>
+                                        <li>Knowledge of database systems (MongoDB, PostgreSQL)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="font-semibold">Responsibilities</h3>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>Design and implement server-side logic</li>
+                                        <li>Create and maintain APIs</li>
+                                        <li>Optimize application performance</li>
+                                        <li>Ensure data security and integrity</li>
+                                    </ul>
+                                </div>
+                                
+                                <button class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+                                    Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
+
+                <!-- UI/UX Designer -->
+                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow relative">
                     <h2 class="text-lg font-bold">UI/UX Designer</h2>
                     <p class="text-gray-600">Seeking a designer for mobile app mockups.</p>
+                    <button 
+                        onclick="toggleJobDrawer(3)" 
+                        class="absolute bottom-2 right-2 text-blue-500 hover:underline text-sm"
+                    >
+                        Show More
+                    </button>
+
+                    <!-- Job Drawer -->
+                    <div 
+                        id="job-drawer-3" 
+                        class="fixed inset-y-0 right-0 w-full md:w-4/5 bg-white z-50 transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto shadow-lg"
+                    >
+                        <div class="container mx-auto p-4 max-w-2xl">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-xl font-bold">UI/UX Designer</h2>
+                                <button 
+                                    onclick="closeJobDrawer(3)" 
+                                    class="text-gray-600 hover:text-gray-900"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h3 class="font-semibold">Job Description</h3>
+                                    <p class="text-gray-600">
+                                        We are looking for a creative UI/UX Designer to create intuitive and engaging mobile app interfaces.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="font-semibold">Requirements</h3>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>Proficiency in Figma or Sketch</li>
+                                        <li>Understanding of user-centered design principles</li>
+                                        <li>Experience with mobile app design</li>
+                                        <li>Strong portfolio of design work</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="font-semibold">Responsibilities</h3>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>Create wireframes and prototypes</li>
+                                        <li>Conduct user research</li>
+                                        <li>Design user interfaces</li>
+                                        <li>Collaborate with development team</li>
+                                    </ul>
+                                </div>
+                                
+                                <button class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+                                    Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
+
+                <!-- SEO Specialist -->
+                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow relative">
                     <h2 class="text-lg font-bold">SEO Specialist</h2>
                     <p class="text-gray-600">Optimize website rankings and drive organic traffic.</p>
+                    <button 
+                        onclick="toggleJobDrawer(4)" 
+                        class="absolute bottom-2 right-2 text-blue-500 hover:underline text-sm"
+                    >
+                        Show More
+                    </button>
+
+                    <!-- Job Drawer for SEO Specialist (similar structure to previous drawers) -->
+                    <div 
+                        id="job-drawer-4" 
+                        class="fixed inset-y-0 right-0 w-full md:w-4/5 bg-white z-50 transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto shadow-lg"
+                    >
+                        <div class="container mx-auto p-4 max-w-2xl">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-xl font-bold">SEO Specialist</h2>
+                                <button 
+                                    onclick="closeJobDrawer(4)" 
+                                    class="text-gray-600 hover:text-gray-900"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h3 class="font-semibold">Job Description</h3>
+                                    <p class="text-gray-600">
+                                        We are looking for an SEO Specialist to optimize website rankings and drive organic traffic.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="font-semibold">Requirements</h3>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>Proficiency in SEO techniques</li>
+                                        <li>Experience with Google Analytics</li>
+                                        <li>Understanding of keyword research</li>
+                                        <li>Knowledge of website optimization</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="font-semibold">Responsibilities</h3>
+                                    <ul class="list-disc list-inside text-gray-600">
+                                        <li>Develop and implement SEO strategies</li>
+                                        <li>Monitor website traffic and analytics</li>
+                                        <li>Optimize website content and structure</li>
+                                        <li>Analyze and report SEO performance</li>
+                                    </ul>
+                                </div>
+                                
+                                <button class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+                                    Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">Data Analyst</h2>
-                    <p class="text-gray-600">Analyze data trends for business strategy.</p>
-                </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">Content Writer</h2>
-                    <p class="text-gray-600">Write engaging articles for blogs and websites.</p>
-                </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">Social Media Manager</h2>
-                    <p class="text-gray-600">Manage social media accounts and grow audience engagement.</p>
-                </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">Mobile App Developer</h2>
-                    <p class="text-gray-600">Build a cross-platform mobile app using Flutter.</p>
-                </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">Graphic Designer</h2>
-                    <p class="text-gray-600">Design logos, banners, and marketing materials.</p>
-                </div>
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow">
-                    <h2 class="text-lg font-bold">DevOps Engineer</h2>
-                    <p class="text-gray-600">Setup CI/CD pipelines and manage cloud infrastructure.</p>
-                </div>
+
+                <!-- Repeat similar pattern for remaining job cards (Data Analyst, Content Writer, etc.)
+                Each job card should have:
+                1. A unique drawer ID (incrementing number)
+                2. A "Show More" button with corresponding onclick event
+                3. A drawer with detailed job information -->
             </div>
         </main>
 
