@@ -76,7 +76,7 @@
         function handleEscapeKey(event) {
             if (event.key === 'Escape') {
                 // Find the open drawer
-                const openDrawer = document.querySelector('[id^="job-drawer-"]:not(.translate-x-full)');
+                const openDrawer = document.querySelector('[id^="job-drawer-"]');
                 
                 if (openDrawer) {
                     // Extract the drawer ID
@@ -116,6 +116,82 @@
                 accountInfo.classList.add('hidden');
             }
         });
+
+        // Keyboard navigation for job cards
+        let currentJobIndex = -1;
+        let jobCards = [];
+
+        function initializeJobCardNavigation() {
+            // Select job cards and convert to array
+            jobCards = Array.from(document.querySelectorAll('[id^="job-card-"]'));
+
+            // If no job cards found, return
+            if (jobCards.length === 0) return;
+
+            // Add unique IDs and attributes to job cards
+            jobCards.forEach((card, index) => {
+                card.id = `job-card-${index + 1}`;
+                card.setAttribute('tabindex', '-1');
+                card.setAttribute('role', 'button');
+                card.setAttribute('aria-label', `Job: ${card.querySelector('h2').textContent}`);
+            });
+
+            // Automatically focus the first job card
+            currentJobIndex = 0;
+            focusJobCard(currentJobIndex);
+        }
+
+        function handleJobCardKeyNavigation(event) {
+            // Ensure we're not in an input field or other interactive element
+            if (event.target.tagName === 'INPUT') return;
+
+            // Ensure job cards are initialized
+            if (jobCards.length === 0) {
+                initializeJobCardNavigation();
+            }
+
+            switch(event.key) {
+                case 'ArrowDown':
+                    event.preventDefault();
+                    currentJobIndex = (currentJobIndex + 1) % jobCards.length;
+                    focusJobCard(currentJobIndex);
+                    break;
+                case 'ArrowUp':
+                    event.preventDefault();
+                    currentJobIndex = (currentJobIndex - 1 + jobCards.length) % jobCards.length;
+                    focusJobCard(currentJobIndex);
+                    break;
+                case 'Enter':
+                    if (currentJobIndex !== -1) {
+                        const jobCard = jobCards[currentJobIndex];
+                        const showMoreButton = jobCard.querySelector('[onclick^="toggleJobDrawer"]');
+                        if (showMoreButton) {
+                            showMoreButton.click();
+                        }
+                    }
+                    break;
+            }
+        }
+
+        function focusJobCard(index) {
+            // Remove previous focus from all cards
+            jobCards.forEach(card => {
+                card.classList.remove('ring-2', 'ring-blue-500');
+                card.setAttribute('tabindex', '-1');
+            });
+
+            // Add focus to current card
+            const currentCard = jobCards[index];
+            currentCard.classList.add('ring-2', 'ring-blue-500');
+            currentCard.setAttribute('tabindex', '0');
+            currentCard.focus();
+        }
+
+        // Add event listener for keyboard navigation
+        document.addEventListener('keydown', handleJobCardKeyNavigation);
+
+        // Initialize job card navigation when DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', initializeJobCardNavigation);
     </script>
 </head>
 <body class="bg-white-100">
@@ -187,7 +263,7 @@
             <!-- Featured Jobs -->
             <div class="space-y-4 mt-4">
                 <!-- Frontend Developer -->
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow relative">
+                <div id="job-card-1" class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow relative">
                     <h2 class="text-lg font-bold">Frontend Developer</h2>
                     <p class="text-gray-600">Looking for a skilled developer to create responsive websites.</p>
                     <button 
@@ -253,7 +329,7 @@
                 </div>
 
                 <!-- Backend Developer -->
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow relative">
+                <div id="job-card-2" class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow relative">
                     <h2 class="text-lg font-bold">Backend Developer</h2>
                     <p class="text-gray-600">Need a backend expert for API development using Node.js.</p>
                     <button 
@@ -318,7 +394,7 @@
                 </div>
 
                 <!-- UI/UX Designer -->
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow relative">
+                <div id="job-card-3" class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow relative">
                     <h2 class="text-lg font-bold">UI/UX Designer</h2>
                     <p class="text-gray-600">Seeking a designer for mobile app mockups.</p>
                     <button 
@@ -383,7 +459,7 @@
                 </div>
 
                 <!-- SEO Specialist -->
-                <div class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow relative">
+                <div id="job-card-4" class="border p-4 rounded shadow-md hover:shadow-lg transition-shadow relative">
                     <h2 class="text-lg font-bold">SEO Specialist</h2>
                     <p class="text-gray-600">Optimize website rankings and drive organic traffic.</p>
                     <button 
