@@ -54,7 +54,7 @@ function closeJobDrawer(id) {
 function handleEscapeKey(event) {
     if (event.key === 'Escape') {
         // Find the open drawer
-        const openDrawer = document.querySelector('[id^="job-drawer-"]');
+        const openDrawer = document.querySelector('[id^="job-drawer-"]:not(.translate-x-full)');
         
         if (openDrawer) {
             // Extract the drawer ID
