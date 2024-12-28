@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs - Upwork</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link data-n-head="ssr" type="font/woff2" rel="preload" href="https://www.upwork.com/static/fonts-global/4.5.1/neue-montreal-variable.woff2" as="font" crossorigin="anonymous">
+
+    <script>
+        function toggleAccordion(id) {
+            const content = document.getElementById(`content-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            const isHidden = content.classList.contains("hidden");
+
+            content.classList.toggle("hidden", !isHidden);
+            icon.classList.toggle("rotate-180", isHidden);
+
+            // Update aria-expanded
+            const button = document.getElementById(`button-${id}`);
+            button.setAttribute("aria-expanded", isHidden ? "true" : "false");
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function togglePopup(id) {
+            const popup = document.getElementById(`popup-${id}`);
+            popup.classList.toggle('hidden');
+        }
+
+        document.addEventListener('click', (event) => {
+            const notifications = document.getElementById('popup-notifications');
+            const accountInfo = document.getElementById('popup-account-info');
+
+            if (!event.target.closest('#notifications-icon')) {
+                notifications.classList.add('hidden');
+            }
+
+            if (!event.target.closest('#account-info-icon')) {
+                accountInfo.classList.add('hidden');
+            }
+        });
+    </script>
+</head>
+<body class="bg-white-100">
+    <!-- Top Menu Bar -->
+    <header class="bg-white sticky top-0 z-10 shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <!-- Mobile Menu Icon -->
+                <button class="md:hidden p-2 text-gray-600 focus:outline-none" aria-label="Open Menu" onclick="toggleMenu()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+                <!-- Logo -->
+                <div class="text-xl font-bold text-gray-700"><a href="./index.html">upwork</a></div>
+                <!-- Menu Options (Desktop) -->
+                <nav class="hidden md:flex space-x-4 ml-6">
+                    <a href="./talent.html" class="text-gray-600 hover:text-gray-800 focus:outline focus:outline-gray-300">Find Talent</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-800 focus:outline focus:outline-gray-300">Jobs</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-800 focus:outline focus:outline-gray-300">Contracts</a>
+                </nav>
+            </div>
+            <!-- Notifications and Account Info -->
+            <div class="flex items-center space-x-4">
+                <!-- Notifications -->
+                <div class="relative" id="notifications-icon">
+                    <button class="p-2 rounded-full focus:outline focus:outline-gray-400" aria-label="Notifications" title="Notifications" onclick="togglePopup('notifications')">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 11-6 0m6 0H9" />
+                        </svg>
+                    </button>
+                    <div id="popup-notifications" class="hidden absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg p-4">
+                        <p class="text-sm text-gray-600">No new notifications.</p>
+                    </div>
+                </div>
+                <!-- Account Info -->
+                <div class="relative" id="account-info-icon">
+                    <button class="p-2 rounded-full focus:outline focus:outline-gray-400" aria-label="Account Info" title="Account Info" onclick="togglePopup('account-info')">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-3.31 0-10 1.67-10 5v2h20v-2c0-3.33-6.69-5-10-5z" />
+                        </svg>
+                    </button>
+                    <div id="popup-account-info" class="hidden absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg p-4">
+                        <p class="text-sm text-gray-600">Logged in as John Doe.</p>
+                        <a href="#" class="text-blue-500 hover:underline text-sm">Profile</a>
+                        <br>
+                        <a href="#" class="text-blue-500 hover:underline text-sm">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <nav id="mobile-menu" class="hidden md:hidden bg-gray-100 py-2">
+            <a href="./talent.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Find Talent</a>
+            <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Jobs</a>
+            <a href="./my-jobs.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">My Jobs</a>
+            <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Contracts</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-6">
+        <!-- Jobs Section -->
+        <div class="max-w-6xl mx-auto">
+            <!-- Header Section -->
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold">Jobs</h1>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                    Find Jobs
+                </button>
+            </div>
+
+            <!-- Search and Filter Section -->
+            <div class="mb-6 flex space-x-4">
+                <div class="flex-grow relative">
+                    <input 
+                        type="text" 
+                        placeholder="Search jobs" 
+                        class="w-full border border-gray-300 rounded-md pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <button class="bg-gray-100 text-gray-700 px-4 py-2 rounded hover:bg-gray-200 transition">
+                    Filters
+                </button>
+            </div>
+
+            <!-- Jobs List -->
+            <div class="bg-white shadow rounded-lg overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50 border-b">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Job Title</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Connects</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Skills</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Budget</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Job Row 1 -->
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">Frontend React Developer</div>
+                                <div class="text-sm text-gray-500">Posted 2 days ago</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    6 Connects
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">React, JavaScript, HTML, CSS</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">$500-$1000</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right relative">
+                                <div class="group inline-block relative">
+                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                        </svg>
+                                    </button>
+                                    
+                                    <!-- Dropdown Menu -->
+                                    <div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100">
+                                        <div class="py-1">
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                View Job Details
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                Save Job
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50 hover:text-red-800">
+                                                Report Job
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- More job rows can be added similarly -->
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">Backend Node.js Developer</div>
+                                <div class="text-sm text-gray-500">Posted 1 day ago</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    4 Connects
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">Node.js, Express, MongoDB, GraphQL</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">$800-$1500</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right relative">
+                                <div class="group inline-block relative">
+                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                        </svg>
+                                    </button>
+                                    
+                                    <!-- Dropdown Menu -->
+                                    <div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100">
+                                        <div class="py-1">
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                View Job Details
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                Save Job
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50 hover:text-red-800">
+                                                Report Job
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">Full Stack Python Developer</div>
+                                <div class="text-sm text-gray-500">Posted 3 days ago</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    5 Connects
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">Python, Django, React, PostgreSQL</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">$1000-$2000</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right relative">
+                                <div class="group inline-block relative">
+                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                        </svg>
+                                    </button>
+                                    
+                                    <!-- Dropdown Menu -->
+                                    <div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100">
+                                        <div class="py-1">
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                View Job Details
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                Save Job
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50 hover:text-red-800">
+                                                Report Job
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">Mobile App iOS Developer</div>
+                                <div class="text-sm text-gray-500">Posted 5 days ago</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    7 Connects
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">Swift, iOS, UIKit, CoreData</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">$1200-$2500</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right relative">
+                                <div class="group inline-block relative">
+                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                        </svg>
+                                    </button>
+                                    
+                                    <!-- Dropdown Menu -->
+                                    <div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100">
+                                        <div class="py-1">
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                View Job Details
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                Save Job
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50 hover:text-red-800">
+                                                Report Job
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">UI/UX Designer</div>
+                                <div class="text-sm text-gray-500">Posted 1 week ago</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    3 Connects
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">Figma, Sketch, Adobe XD, Wireframing</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">$500-$1200</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right relative">
+                                <div class="group inline-block relative">
+                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                        </svg>
+                                    </button>
+                                    
+                                    <!-- Dropdown Menu -->
+                                    <div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100">
+                                        <div class="py-1">
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                View Job Details
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                Save Job
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50 hover:text-red-800">
+                                                Report Job
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">DevOps Engineer</div>
+                                <div class="text-sm text-gray-500">Posted 4 days ago</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    6 Connects
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">AWS, Docker, Kubernetes, CI/CD</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">$1500-$3000</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right relative">
+                                <div class="group inline-block relative">
+                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                        </svg>
+                                    </button>
+                                    
+                                    <!-- Dropdown Menu -->
+                                    <div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100">
+                                        <div class="py-1">
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                View Job Details
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                Save Job
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50 hover:text-red-800">
+                                                Report Job
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">Machine Learning Engineer</div>
+                                <div class="text-sm text-gray-500">Posted 6 days ago</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    8 Connects
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">Python, TensorFlow, Scikit-learn, Deep Learning</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">$2000-$4000</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right relative">
+                                <div class="group inline-block relative">
+                                    <button class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                        </svg>
+                                    </button>
+                                    
+                                    <!-- Dropdown Menu -->
+                                    <div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100">
+                                        <div class="py-1">
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                View Job Details
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                                                Save Job
+                                            </a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50 hover:text-red-800">
+                                                Report Job
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="theme.js"></script>
+</body>
+</html>
