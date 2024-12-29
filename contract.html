@@ -7,22 +7,39 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link data-n-head="ssr" type="font/woff2" rel="preload" href="https://www.upwork.com/static/fonts-global/4.5.1/neue-montreal-variable.woff2" as="font" crossorigin="anonymous">
     <script src="theme.js" defer></script>
-    <script>
-        function toggleFilterDrawer() {
-            const filterDrawer = document.getElementById('filter-drawer');
-            filterDrawer.classList.toggle('hidden');
-        }
+    <script type="module">
+        import FilterDrawer from './filterDrawer.js';
 
-        // Close filter drawer when clicking outside
-        document.addEventListener('click', (event) => {
-            const filterDrawer = document.getElementById('filter-drawer');
-            const filterButton = document.getElementById('filter-button');
+        // Optional: Custom filter application function
+        const applyContractFilters = (filters) => {
+            console.log('Applying contract filters:', filters);
             
-            if (filterDrawer && !filterDrawer.classList.contains('hidden') && 
-                !filterButton.contains(event.target) && 
-                !filterDrawer.contains(event.target)) {
-                filterDrawer.classList.add('hidden');
-            }
+            // Example: Filter contract cards based on status
+            const contractCards = document.querySelectorAll('.contract-card');
+            
+            contractCards.forEach(card => {
+                const status = card.getAttribute('data-status');
+                const isStatusMatch = filters.status.length === 0 || filters.status.includes(status);
+                
+                // Additional filter conditions
+                const rate = parseFloat(card.getAttribute('data-rate'));
+                const isRateMatch = 
+                    (!filters.rateRange.min || rate >= parseFloat(filters.rateRange.min)) &&
+                    (!filters.rateRange.max || rate <= parseFloat(filters.rateRange.max));
+                
+                // Show/hide card based on filters
+                card.style.display = (isStatusMatch && isRateMatch) ? 'block' : 'none';
+            });
+        };
+
+        // Initialize FilterDrawer with custom configuration
+        document.addEventListener('DOMContentLoaded', () => {
+            const contractFilterDrawer = FilterDrawer.create({
+                onApply: applyContractFilters,
+                drawerSelector: '#contract-filter-drawer',
+                buttonSelector: '#contract-filter-button',
+                applyButtonSelector: '#contract-apply-filters-btn'
+            });
         });
     </script>
 </head>
@@ -102,8 +119,7 @@
                         </svg>
                     </div>
                     <button 
-                        id="filter-button"
-                        onclick="toggleFilterDrawer()" 
+                        id="contract-filter-button"
                         class="text-gray-600 hover:bg-gray-100 p-2 rounded flex-shrink-0"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -332,14 +348,14 @@
     </div>
 
     <div 
-        id="filter-drawer" 
+        id="contract-filter-drawer" 
         class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end"
     >
         <div class="w-full md:w-96 bg-white h-full shadow-lg p-6 overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-xl font-bold">Filter Contracts</h2>
                 <button 
-                    onclick="toggleFilterDrawer()" 
+                    id="contract-apply-filters-btn"
                     class="text-gray-600 hover:bg-gray-100 p-2 rounded"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -419,7 +435,7 @@
                 <!-- Apply Filters Button -->
                 <div class="mt-6">
                     <button 
-                        onclick="toggleFilterDrawer()" 
+                        id="contract-apply-filters-btn"
                         class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
                     >
                         Apply Filters
