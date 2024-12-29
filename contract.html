@@ -22,10 +22,10 @@
                 const isStatusMatch = filters.status.length === 0 || filters.status.includes(status);
                 
                 // Additional filter conditions
-                const rate = parseFloat(card.getAttribute('data-rate'));
+                const rate = parseFloat(card.getAttribute('data-rate') || '0');
                 const isRateMatch = 
-                    (!filters.rateRange.min || rate >= parseFloat(filters.rateRange.min)) &&
-                    (!filters.rateRange.max || rate <= parseFloat(filters.rateRange.max));
+                    (!filters.rateRange.min || rate >= parseFloat(filters.rateRange.min || '0')) &&
+                    (!filters.rateRange.max || rate <= parseFloat(filters.rateRange.max || '1000000'));
                 
                 // Show/hide card based on filters
                 card.style.display = (isStatusMatch && isRateMatch) ? 'block' : 'none';
