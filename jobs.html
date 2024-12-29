@@ -44,6 +44,16 @@
             }
         });
     </script>
+
+    <style>
+        .job-row {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .job-row:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+    </style>
 </head>
 <body class="bg-white-100">
     <!-- Top Menu Bar -->
@@ -146,7 +156,7 @@
                     </thead>
                     <tbody>
                         <!-- Job Row 1 -->
-                        <tr class="hover:bg-gray-50 transition">
+                        <tr class="job-row hover:bg-gray-50 transition">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">Frontend React Developer</div>
                                 <div class="text-sm text-gray-500">Posted 2 days ago</div>
@@ -188,7 +198,7 @@
                             </td>
                         </tr>
                         <!-- More job rows can be added similarly -->
-                        <tr class="hover:bg-gray-50 transition">
+                        <tr class="job-row hover:bg-gray-50 transition">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">Backend Node.js Developer</div>
                                 <div class="text-sm text-gray-500">Posted 1 day ago</div>
@@ -229,7 +239,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr class="hover:bg-gray-50 transition">
+                        <tr class="job-row hover:bg-gray-50 transition">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">Full Stack Python Developer</div>
                                 <div class="text-sm text-gray-500">Posted 3 days ago</div>
@@ -270,7 +280,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr class="hover:bg-gray-50 transition">
+                        <tr class="job-row hover:bg-gray-50 transition">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">Mobile App iOS Developer</div>
                                 <div class="text-sm text-gray-500">Posted 5 days ago</div>
@@ -311,7 +321,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr class="hover:bg-gray-50 transition">
+                        <tr class="job-row hover:bg-gray-50 transition">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">UI/UX Designer</div>
                                 <div class="text-sm text-gray-500">Posted 1 week ago</div>
@@ -352,7 +362,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr class="hover:bg-gray-50 transition">
+                        <tr class="job-row hover:bg-gray-50 transition">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">DevOps Engineer</div>
                                 <div class="text-sm text-gray-500">Posted 4 days ago</div>
@@ -393,7 +403,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr class="hover:bg-gray-50 transition">
+                        <tr class="job-row hover:bg-gray-50 transition">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">Machine Learning Engineer</div>
                                 <div class="text-sm text-gray-500">Posted 6 days ago</div>
