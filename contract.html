@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contracts - RemoteHQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link data-n-head="ssr" type="font/woff2" rel="preload" href="https://www.upwork.com/static/fonts-global/4.5.1/neue-montreal-variable.woff2" as="font" crossorigin="anonymous">
+    <script src="theme.js" defer></script>
+</head>
+<body class="bg-white-100">
+    <!-- Header -->
+    <header class="bg-white sticky top-0 z-10 shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <!-- Mobile Menu Icon -->
+                <button class="md:hidden p-2 text-gray-600 focus:outline-none" aria-label="Open Menu" onclick="toggleMenu()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+                <!-- Logo -->
+                <div class="text-xl font-bold text-gray-700"><a href="./index.html">RemoteHQ</a></div>
+                <!-- Menu Options (Desktop) -->
+                <nav class="hidden md:flex space-x-4 ml-6">
+                    <a href="./talent.html" class="text-gray-600 hover:text-gray-800 focus:outline focus:outline-gray-300">Find Talent</a>
+                    <a href="./jobs.html" class="text-gray-600 hover:text-gray-800 focus:outline focus:outline-gray-300">Jobs</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-800 focus:outline focus:outline-gray-300 font-bold">Contracts</a>
+                </nav>
+            </div>
+            <!-- Notifications and Account Info -->
+            <div class="flex items-center space-x-4">
+                <!-- Notifications -->
+                <div class="relative" id="notifications-icon">
+                    <button class="p-2 rounded-full focus:outline focus:outline-gray-400" aria-label="Notifications" title="Notifications" onclick="togglePopup('notifications')">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 11-6 0m6 0H9" />
+                        </svg>
+                    </button>
+                    <div id="popup-notifications" class="hidden absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg p-4">
+                        <p class="text-sm text-gray-600">No new notifications.</p>
+                    </div>
+                </div>
+                <!-- Account Info -->
+                <div class="relative" id="account-info-icon">
+                    <button class="p-2 rounded-full focus:outline focus:outline-gray-400" aria-label="Account Info" title="Account Info" onclick="togglePopup('account-info')">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-3.31 0-10 1.67-10 5v2h20v-2c0-3.33-6.69-5-10-5z" />
+                        </svg>
+                    </button>
+                    <div id="popup-account-info" class="hidden absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg p-4">
+                        <p class="text-sm text-gray-600">Logged in as John Doe.</p>
+                        <a href="#" class="text-blue-500 hover:underline text-sm">Profile</a>
+                        <br>
+                        <a href="#" class="text-blue-500 hover:underline text-sm">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <nav id="mobile-menu" class="hidden md:hidden bg-gray-100 py-2">
+            <a href="./talent.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Find Talent</a>
+            <a href="./jobs.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Jobs</a>
+            <a href="./my-jobs.html" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">My Jobs</a>
+            <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200 font-bold">Contracts</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-6">
+        <div class="max-w-6xl mx-auto">
+            <!-- Header Section -->
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
+                <h1 class="text-2xl font-bold w-full text-center md:text-left md:w-auto">Your Contracts</h1>
+                <div class="flex items-center space-x-2 w-full md:w-auto">
+                    <div class="relative flex-grow mr-2">
+                        <input 
+                            type="text" 
+                            placeholder="Search contracts" 
+                            class="w-full border border-gray-300 rounded-md pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <button class="text-gray-600 hover:bg-gray-100 p-2 rounded flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contracts Grid -->
+            <div class="space-y-3">
+                <!-- Contract Card 1 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors duration-200 ease-in-out">
+                    <div class="p-4">
+                        <!-- First Row: Contract Title and Three Dots -->
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="text-lg font-semibold text-gray-800">Ruby on Rails Development</h2>
+                            <div class="relative group">
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                    </svg>
+                                </button>
+                                <!-- Dropdown Menu -->
+                                <div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100">
+                                    <div class="py-1">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">View Details</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Manage Contract</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50">End Contract</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Second Row: Client and Status -->
+                        <div class="flex justify-between mb-2 text-sm text-gray-600">
+                            <div>Hired by Mercedes Sournswan</div>
+                            <div>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full mr-2">Active</span>
+                                6:00 hrs, $300 this week
+                            </div>
+                        </div>
+
+                        <!-- Third Row: Rate and Contract Duration -->
+                        <div class="flex justify-between text-sm text-gray-500">
+                            <div>Rate: $25/hr, 25 hrs weekly limit</div>
+                            <div>Nov 21 - Present</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contract Card 2 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors duration-200 ease-in-out">
+                    <div class="p-4">
+                        <!-- First Row: Contract Title and Three Dots -->
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="text-lg font-semibold text-gray-800">Frontend React Development</h2>
+                            <div class="relative group">
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                    </svg>
+                                </button>
+                                <!-- Dropdown Menu -->
+                                <div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100">
+                                    <div class="py-1">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">View Details</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Manage Contract</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50">End Contract</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Second Row: Client and Status -->
+                        <div class="flex justify-between mb-2 text-sm text-gray-600">
+                            <div>Hired by TechCorp Solutions</div>
+                            <div>
+                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full mr-2">Pending</span>
+                                4:30 hrs, $250 this week
+                            </div>
+                        </div>
+
+                        <!-- Third Row: Rate and Contract Duration -->
+                        <div class="flex justify-between text-sm text-gray-500">
+                            <div>Rate: $30/hr, 20 hrs weekly limit</div>
+                            <div>Jan 23 - Mar 31</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more contract cards as needed -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors duration-200 ease-in-out">
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="text-lg font-semibold text-gray-800">Mobile App Design Project</h2>
+                            <div class="relative group">
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                    </svg>
+                                </button>
+                                <div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100">
+                                    <div class="py-1">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">View Details</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Manage Contract</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50">End Contract</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between mb-2 text-sm text-gray-600">
+                            <div>Hired by Innovate Mobile Inc.</div>
+                            <div>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full mr-2">In Progress</span>
+                                8:15 hrs, $450 this week
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-500">
+                            <div>Rate: $55/hr, 15 hrs weekly limit</div>
+                            <div>Feb 15 - Apr 15</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors duration-200 ease-in-out">
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="text-lg font-semibold text-gray-800">E-commerce Backend Development</h2>
+                            <div class="relative group">
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                    </svg>
+                                </button>
+                                <div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100">
+                                    <div class="py-1">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">View Details</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Manage Contract</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50">End Contract</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between mb-2 text-sm text-gray-600">
+                            <div>Hired by GlobalShop Solutions</div>
+                            <div>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full mr-2">Active</span>
+                                12:30 hrs, $750 this week
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-500">
+                            <div>Rate: $60/hr, 20 hrs weekly limit</div>
+                            <div>Mar 1 - May 30</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors duration-200 ease-in-out">
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="text-lg font-semibold text-gray-800">AI Chatbot Integration</h2>
+                            <div class="relative group">
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                    </svg>
+                                </button>
+                                <div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100">
+                                    <div class="py-1">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">View Details</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Manage Contract</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50">End Contract</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between mb-2 text-sm text-gray-600">
+                            <div>Hired by TechAI Innovations</div>
+                            <div>
+                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full mr-2">Pending</span>
+                                3:45 hrs, $225 this week
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-500">
+                            <div>Rate: $45/hr, 10 hrs weekly limit</div>
+                            <div>Apr 5 - Jun 15</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors duration-200 ease-in-out">
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="text-lg font-semibold text-gray-800">Cloud Infrastructure Setup</h2>
+                            <div class="relative group">
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                    </svg>
+                                </button>
+                                <div class="hidden group-hover:block absolute right-0 top-full mt-1 w-48 bg-white rounded-md shadow-lg z-50 border border-gray-100">
+                                    <div class="py-1">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">View Details</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Manage Contract</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-50">End Contract</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between mb-2 text-sm text-gray-600">
+                            <div>Hired by CloudNative Systems</div>
+                            <div>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full mr-2">Active</span>
+                                10:00 hrs, $600 this week
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-500">
+                            <div>Rate: $65/hr, 15 hrs weekly limit</div>
+                            <div>Jan 10 - Jul 30</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
