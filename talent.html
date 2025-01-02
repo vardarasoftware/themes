@@ -67,6 +67,17 @@
             </div>
             <!-- Notifications and Account Info -->
             <div class="flex items-center space-x-4">
+                <!--Ai assistant chat-->
+                <div class="relative">
+                    <button class="p-2 rounded-full focus:outline focus:outline-gray-400" aria-label="Notifications" title="conversations">
+                        <a href="./ai_chat.html" class="relative">
+                            <svg class="w-6 h-6 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8-1.174 0-2.3-.183-3.358-.524L3 20l1.424-4.272C3.526 14.335 3 12.73 3 11c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                            </svg>
+                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+                        </a>
+                    </button>
+                </div>
                 <!-- Notifications -->
                 <div class="relative" id="notifications-icon">
                     <button class="p-2 rounded-full focus:outline focus:outline-gray-400" aria-label="Notifications" title="Notifications" onclick="togglePopup('notifications')">
