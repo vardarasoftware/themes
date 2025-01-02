@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat - RemoteHQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link data-n-head="ssr" type="font/woff2" rel="preload" href="https://www.upwork.com/static/fonts-global/4.5.1/neue-montreal-variable.woff2" as="font" crossorigin="anonymous">
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white sticky top-0 z-10 shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <!-- Mobile Menu Icon -->
+                <button class="md:hidden p-2 text-gray-600 focus:outline-none" aria-label="Open Menu" onclick="toggleMenu()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+                <!-- Logo -->
+                <div class="text-xl font-bold text-gray-700"><a href="./index.html">RemoteHQ</a></div>
+                <!-- Menu Options (Desktop) -->
+                <nav class="hidden md:flex space-x-4 ml-6">
+                    <a href="./talent.html" class="text-gray-600 hover:text-gray-800">Find Talent</a>
+                    <a href="./jobs.html" class="text-gray-600 hover:text-gray-800">Jobs</a>
+                    <a href="./contract.html" class="text-gray-600 hover:text-gray-800">Contracts</a>
+                    <a href="./ai_chat.html" class="text-gray-600 hover:text-gray-800 font-bold">AI Chat</a>
+                </nav>
+            </div>
+            <!-- Right side icons -->
+            <div class="flex items-center space-x-4">
+                <!-- AI Assistant Icon -->
+                <div class="relative group">
+                    <a href="./ai_chat.html" class="p-2 rounded-full hover:bg-gray-100 focus:outline-none relative">
+                        <svg class="w-6 h-6 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10" stroke-width="2" class="opacity-50"/>
+                            <path d="M12 8 L15 12 L9 16" stroke-width="2"/>
+                        </svg>
+                    </a>
+                </div>
+                <!-- Notifications -->
+                <div class="relative" id="notifications-icon">
+                    <!-- ... existing notification icon ... -->
+                </div>
+                <!-- Account Info -->
+                <div class="relative" id="account-info-icon">
+                    <!-- ... existing account icon ... -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Chat Interface with Left Panel -->
+    <div class="flex h-[calc(100vh-64px)]">
+        <!-- Left Panel -->
+        <div class="w-64 bg-white border-r hidden md:block">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold mb-4">Chat History</h2>
+                <div class="space-y-2">
+                    <div class="p-2 bg-blue-50 rounded-lg cursor-pointer">
+                        <p class="font-medium">Current Chat</p>
+                        <p class="text-sm text-gray-500 truncate">Latest message...</p>
+                    </div>
+                    <!-- Add more chat history items here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="flex-1 flex flex-col">
+            <!-- Chat Header -->
+            <div class="bg-white p-4 border-b">
+                <div class="flex items-center space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke-width="2" class="opacity-50"/>
+                            <path d="M12 8 L15 12 L9 16" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-semibold">AI Assistant</h2>
+                        <p class="text-sm text-gray-500">Online</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Messages -->
+            <div class="flex-1 overflow-y-auto p-4 space-y-4 chat-messages">
+                <!-- Messages will be inserted here -->
+            </div>
+
+            <!-- Fixed Chat Input -->
+            <div class="bg-white border-t p-4">
+                <div class="flex space-x-4">
+                    <input 
+                        type="text" 
+                        placeholder="Type your message..." 
+                        class="flex-1 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 chat-input text-lg"
+                    >
+                    <button class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors flex items-center space-x-2 send-button">
+                        <span>Send</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import ChatInterface from './aiChat.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const chat = new ChatInterface();
+        });
+    </script>
+</body>
+</html> 

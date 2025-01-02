@@ -1,0 +1,95 @@
+/* Chat container styles */
+.chat-container {
+    height: calc(100vh - 300px);
+    background-color: white;
+    border-radius: 0.5rem;
+}
+
+/* Message animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-animation {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Typing indicator animation */
+@keyframes typing {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+}
+
+.typing-indicator span {
+    animation: typing 1s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Custom scrollbar */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+/* Message bubble hover effects */
+.message-bubble {
+    transition: transform 0.2s ease;
+}
+
+.message-bubble:hover {
+    transform: scale(1.01);
+}
+
+/* Input focus effects */
+.chat-input:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Send button hover animation */
+.send-button {
+    transition: all 0.2s ease;
+}
+
+.send-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* AI Avatar pulse animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.ai-avatar {
+    animation: pulse 2s infinite;
+} 
