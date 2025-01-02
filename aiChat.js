@@ -1,9 +1,9 @@
 class ChatInterface {
     constructor() {
         try {
-            this.input = document.querySelector('input[type="text"]');
-            this.sendButton = document.querySelector('.send-button');
-            this.chatMessages = document.querySelector('.chat-messages');
+            this.input = document.querySelector('#chat-input');
+            this.sendButton = document.querySelector('#send-button');
+            this.chatMessages = document.querySelector('#chat-messages');
             
             if (!this.input || !this.sendButton || !this.chatMessages) {
                 throw new Error('Required elements not found');
